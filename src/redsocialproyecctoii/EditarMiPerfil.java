@@ -54,7 +54,6 @@ public Master mas;
         EdadSpin = new javax.swing.JSpinner();
         EDITAR = new javax.swing.JButton();
         btnDesActivar = new javax.swing.JButton();
-        btnActivar = new javax.swing.JButton();
 
         jLabel3.setText("Usuario");
 
@@ -127,14 +126,6 @@ public Master mas;
             }
         });
 
-        btnActivar.setBackground(new java.awt.Color(0, 51, 204));
-        btnActivar.setText("Activar Cuenta");
-        btnActivar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnActivarMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,9 +150,7 @@ public Master mas;
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(EDITAR)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnActivar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDesActivar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnDesActivar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,17 +169,11 @@ public Master mas;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(TxtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(EdadSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnActivar)
-                        .addGap(3, 3, 3)))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(EdadSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EDITAR)
                     .addComponent(btnDesActivar))
@@ -229,7 +212,6 @@ public Master mas;
             for (int i = 0; i <mas.NumUsers; i++) {
                 if (mas.users[i].equals(mas.UsuarioActual)) {
                     mas.users[i].setUser(user);
-                    //mas.users[i].setPass(password);
                 }
             }
             mas.UsuarioActual.setNombre(name);
@@ -238,7 +220,7 @@ public Master mas;
             mas.UsuarioActual.setEdad(edad);
             
           
-            
+            //Cambair lista Following de Otros
            for(Usuario u : mas.users){
                if(u==null){
                    break;
@@ -258,7 +240,35 @@ public Master mas;
                }
                
            }
+           
+           //Cambair lista Followers de Otros
+           for(Usuario u : mas.users){
+               if(u==null){
+                   break;
+               }
+               for ( String usr : mas.UsuarioActual.getfollowers()) {
+                   if(u==null){
+                       break;
+                   }
+                   if (u.getUser().equals(usr)) {
+                       for (int i = 0; i < u.getNumFollowers(); i++) {
+                           if (u.getfollowers()[i].equals(oldUser)) {
+                               u.UpdateFollowers(user, i);
+                           }
+                       }
+ 
+                   }
+               }
+               
+           }
+           
+           
             
+            for (int i = 0; i < mas.NumTweets; i++) {
+                if (mas.tweets[i].getUsuario().equals(oldUser)) {
+                    mas.tweets[i].setUsuario(user);
+                }
+            }
            
             MiPerfil mp =new MiPerfil(mas);
             mp.setVisible(true);
@@ -269,35 +279,17 @@ public Master mas;
     }//GEN-LAST:event_EDITARMouseClicked
 
     private void btnDesActivarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDesActivarMouseClicked
-
-        if(mas.UsuarioActual.getEstado()){
-            int confirmar = JOptionPane.showConfirmDialog(null,"¿Desea desactivar la Cuenta?", "Atencion", JOptionPane.OK_CANCEL_OPTION);
+            int confirmar = JOptionPane.showConfirmDialog(null,"¿Desea desactivar la Cuenta?\nRecuerda que esto Cerrara tu Sesion\nLa Cuenta se Activara cuando vuelvas a Logear", "Atencion", JOptionPane.OK_CANCEL_OPTION);
             if (confirmar==0) {
                  mas.UsuarioActual.DesactivarCuenta();
-                 return;
+                 mas.Logout();
+                         Inicio in= new Inicio(mas);
+                         in.setVisible(true);
+                         setLocationRelativeTo(null);
+                         this.dispose();
             }
-        }
-        
-        if (mas.UsuarioActual.getEstado()==false) {
-           JOptionPane.showMessageDialog(null, "La Cuenta Ya se encuentra Desactivada");            
-        }
-        
-    }//GEN-LAST:event_btnDesActivarMouseClicked
 
-    private void btnActivarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActivarMouseClicked
-        // TODO add your handling code here:
-              if(mas.UsuarioActual.getEstado()==false){
-                    mas.UsuarioActual.ActivarCuenta();
-                    JOptionPane.showMessageDialog(null, "Se ha Activado Tu cuenta");  
-                    return;
-            }
-        
-        
-        if (mas.UsuarioActual.getEstado()) {
-           JOptionPane.showMessageDialog(null, "La Cuenta Ya se encuentra Activa");            
-        }     
-     
-    }//GEN-LAST:event_btnActivarMouseClicked
+    }//GEN-LAST:event_btnDesActivarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -311,7 +303,6 @@ public Master mas;
     private javax.swing.JTextField TxtNombre;
     private javax.swing.JPasswordField TxtPass;
     private javax.swing.JTextField TxtUser;
-    private javax.swing.JButton btnActivar;
     private javax.swing.JButton btnDesActivar;
     private javax.swing.JSpinner edadSpin;
     private javax.swing.JButton jButton2;

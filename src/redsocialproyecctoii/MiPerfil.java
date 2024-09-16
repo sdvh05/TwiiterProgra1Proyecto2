@@ -10,7 +10,7 @@ import redsocialproyecctoii.Master;
  * @author Hp
  */
 public class MiPerfil extends javax.swing.JFrame {
-        //private Usuario usuario; //reactivar en caso de recuperar la funcion
+  //private Usuario usuario; //reactivar en caso de recuperar la funcion
     private String nombre;
     private String user;
     private String genero;
@@ -33,17 +33,16 @@ public class MiPerfil extends javax.swing.JFrame {
         lblUsername.setText("@"+mas.getUsuarioActual());
         lblNombre.setText(mas.UsuarioActual.getNombre());
         lblGenAge.setText(mas.UsuarioActual.getGen()+" "+mas.UsuarioActual.getAge());
-        lblFecha.setText(mas.UsuarioActual.getFecha());
+        lblFecha.setText("Fecha que Ingreso: "+mas.UsuarioActual.getFecha());
         lblFollowers.setText("Followers: "+mas.UsuarioActual.getNumFollowers());
         lblFollowing.setText("Following: "+mas.UsuarioActual.getNumFollowing());
         
         String Ruta="";
-        
         if(mas.UsuarioActual.getGen().equalsIgnoreCase("Masculino")){
-            Ruta="src/imagen/pfp-Hombre.png";    
+            Ruta="src/imagen/PfpMasculino.png";    
         } 
         else if(mas.UsuarioActual.getGen().equalsIgnoreCase("Femenino")){
-            Ruta="src/imagen/pfp-mujer.png";  
+            Ruta="src/imagen/PfpFemenina.png";  
         }
         Pfp.setIcon(new ImageIcon(Ruta));
           
@@ -135,8 +134,7 @@ public class MiPerfil extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TxtATweets);
 
         Pfp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Pfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/pfp-Hombre.png"))); // NOI18N
-        Pfp.setText("FotoPFP");
+        Pfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/PfpFemenina.png"))); // NOI18N
         Pfp.setMinimumSize(new java.awt.Dimension(318, 241));
 
         btnEdit.setText("Editar Perfil");
@@ -153,31 +151,28 @@ public class MiPerfil extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(Pfp, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Pfp, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblGenAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblFollowing, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(52, 52, 52)
+                                .addGap(45, 45, 45)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(lblFollowing, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblGenAge, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblFecha)
-                                    .addComponent(lblFollowers, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEdit)
-                        .addGap(43, 43, 43))))
+                                    .addComponent(lblFollowers, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 94, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEdit)
+                                .addGap(22, 22, 22))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

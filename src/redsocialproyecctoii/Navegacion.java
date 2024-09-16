@@ -8,6 +8,7 @@ import redsocialproyecctoii.Master;
 import java.awt.Dimension;
 import java.util.Calendar;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -29,6 +30,20 @@ public class Navegacion extends javax.swing.JFrame {
         this.setTitle("TimeLine @"+mas.getUsuarioActual());
         setLocationRelativeTo(null);
         lblNameUser.setText("@"+mas.getUsuarioActual());
+        
+        String Ruta="";
+        if(mas.UsuarioActual.getGen().equalsIgnoreCase("Masculino")){
+            Ruta="src/imagen/PfpMasculino.png";    
+        } 
+        else if(mas.UsuarioActual.getGen().equalsIgnoreCase("Femenino")){
+            Ruta="src/imagen/PfpFemenina.png";  
+        }
+        Pfp.setIcon(new ImageIcon(Ruta));
+        
+        
+        
+        
+        
         
             for (int i =0; i < mas.NumTweets; i++) {
                 String UserTweet=mas.tweets[i].getUsuario(); //extraer quien hizo el tweet(Usuario)
@@ -78,13 +93,15 @@ public class Navegacion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         areaTweet = new javax.swing.JTextArea();
         btnTwitt = new javax.swing.JButton();
-        lblNameUser = new javax.swing.JLabel();
         charsPost = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         PanelBtn = new javax.swing.JPanel();
         btnInteract = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         btnProfile = new javax.swing.JButton();
         RefreshTimeline = new javax.swing.JButton();
+        Pfp = new javax.swing.JLabel();
+        lblNameUser = new javax.swing.JLabel();
         PanelSearch = new javax.swing.JPanel();
         txtBusqueda = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
@@ -128,6 +145,7 @@ public class Navegacion extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(areaTweet);
 
+        btnTwitt.setBackground(new java.awt.Color(51, 153, 255));
         btnTwitt.setText("Publicar");
         btnTwitt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,10 +153,10 @@ public class Navegacion extends javax.swing.JFrame {
             }
         });
 
-        lblNameUser.setText("@Username");
-
         charsPost.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         charsPost.setText("0 / 140");
+
+        jLabel1.setText("¿Que estas Pensando?");
 
         javax.swing.GroupLayout PanelTypeLayout = new javax.swing.GroupLayout(PanelType);
         PanelType.setLayout(PanelTypeLayout);
@@ -146,25 +164,25 @@ public class Navegacion extends javax.swing.JFrame {
             PanelTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelTypeLayout.createSequentialGroup()
                 .addGroup(PanelTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTypeLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(charsPost, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelTypeLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(PanelTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelTypeLayout.createSequentialGroup()
-                                .addComponent(lblNameUser)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTypeLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnTwitt))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTypeLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(charsPost, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnTwitt))
+                            .addGroup(PanelTypeLayout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         PanelTypeLayout.setVerticalGroup(
             PanelTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelTypeLayout.createSequentialGroup()
-                .addComponent(lblNameUser)
+                .addComponent(jLabel1)
                 .addGap(3, 3, 3)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -205,31 +223,47 @@ public class Navegacion extends javax.swing.JFrame {
             }
         });
 
+        Pfp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Pfp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/PfpMasculino.png"))); // NOI18N
+        Pfp.setText("FotoPFP");
+        Pfp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Pfp.setMinimumSize(new java.awt.Dimension(318, 241));
+
+        lblNameUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNameUser.setText("@Username");
+
         javax.swing.GroupLayout PanelBtnLayout = new javax.swing.GroupLayout(PanelBtn);
         PanelBtn.setLayout(PanelBtnLayout);
         PanelBtnLayout.setHorizontalGroup(
             PanelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelBtnLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(PanelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnInteract, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RefreshTimeline, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(PanelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnInteract, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(RefreshTimeline, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblNameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Pfp, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         PanelBtnLayout.setVerticalGroup(
             PanelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelBtnLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(18, 18, 18)
+                .addComponent(Pfp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNameUser)
+                .addGap(18, 18, 18)
                 .addComponent(btnProfile)
-                .addGap(88, 88, 88)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInteract)
                 .addGap(18, 18, 18)
                 .addComponent(RefreshTimeline)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
                 .addComponent(btnClose)
-                .addGap(82, 82, 82))
+                .addGap(90, 90, 90))
         );
 
         PanelSearch.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -444,11 +478,15 @@ public class Navegacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        mas.Logout();
-        Inicio in= new Inicio(mas);
-        in.setVisible(true);
-        setLocationRelativeTo(null);
-        this.dispose();
+        int confirmar = JOptionPane.showConfirmDialog(null,"¿Desea Cerrar su Sesion?", "Atencion", JOptionPane.OK_CANCEL_OPTION);
+            if (confirmar==0) {
+                 mas.Logout();
+                Inicio in= new Inicio(mas);
+                in.setVisible(true);
+                setLocationRelativeTo(null);
+                this.dispose();
+            }
+       
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnTwittActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTwittActionPerformed
@@ -503,6 +541,9 @@ public class Navegacion extends javax.swing.JFrame {
         // RETORNAR la timeline al original
         TimeLine.setText("");
         txtHash.setText("");
+        ListaBsq.setText("");
+        txtBusqueda.setText("");
+        ListaHash.setText("");
             for (int i =0; i < mas.NumTweets; i++) {
                 String UserTweet=mas.tweets[i].getUsuario();
                 
@@ -568,37 +609,28 @@ public class Navegacion extends javax.swing.JFrame {
     }//GEN-LAST:event_areaTweetKeyReleased
 
     private void txtBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyReleased
-       //LO QUE PASA AL ESCRIBIR EN BUSCAR USUSARIO
+       //LO QUE PASA AL ESCRIBIR EN BUSCAR USUSARIO    
        
-        ListaBsq.setText("");
-        String Buscar=txtBusqueda.getText();
-        
-            if (Buscar.isEmpty()) {
+    ListaBsq.setText("");
+    String Buscar = txtBusqueda.getText();
+    
+    if (Buscar.isEmpty()) {
         return;
     }
-            
-        StringBuilder resultados = new StringBuilder();
-        
-        for (int i = 0; i <mas.NumUsers; i++) {
-            String username = mas.users[i].getUser();
-            
-            if (mas.UsuarioActual.getUser().equals(username)) {
-                continue;  
+    
+    StringBuilder resultados = new StringBuilder();
+    
+    for (int i = 0; i < mas.NumUsers; i++) {
+        String username = mas.users[i].getUser();
+        if (mas.UsuarioActual.getUser().equals(username)) {
+            continue;  
         }
-            if(mas.users[i].getUser().contains(Buscar)){
-                for (Usuario activos : mas.users) {
-                            if(activos==null){
-                                break;
-                            }
-                            if(activos.getUser().equals(Buscar)){
-                                if(activos.getEstado()){
-                                   resultados.append(mas.users[i].getUser()).append("\n");
-                                }
-                            }      
-                        }
-            }
+        if (username.contains(Buscar) && mas.users[i].getEstado()) {
+            resultados.append(username).append("\n");
         }
-        ListaBsq.setText(resultados.toString());
+    }
+    ListaBsq.setText(resultados.toString());
+
     }//GEN-LAST:event_txtBusquedaKeyReleased
 
     private void txtHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHashActionPerformed
@@ -633,25 +665,28 @@ public class Navegacion extends javax.swing.JFrame {
     private void txtHashKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHashKeyReleased
         // ESCRIBIR EN BUSCAR HASHTAG
         ListaBsq.setText("");
-        String Hash="#"+txtHash.getText();
+        String Hash=txtHash.getText();
         
             if (Hash.isEmpty() || Hash.equals("#")) {
-        return;
-    }
+                ListaHash.setText("");
+                return;
+        }
             
         StringBuilder resultadosH = new StringBuilder();
         
         for (int i = 0; i <mas.NumTweets; i++) {
             String[] Hashtags=mas.tweets[i].getHashtags();
             for (String Hashtag : Hashtags) {
-                if (Hashtag.contains(Hash) && !resultadosH.toString().contains(Hashtag)) {
+                if (Hashtag.contains("#"+Hash) && !resultadosH.toString().contains(Hashtag)) {
                     resultadosH.append(Hashtag+"\n");
                 }
  
             }
         }
         ListaHash.setText(resultadosH.toString());
-     
+        
+
+                 
     }//GEN-LAST:event_txtHashKeyReleased
 
     private void btnHashtagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHashtagMouseClicked
@@ -665,6 +700,7 @@ public class Navegacion extends javax.swing.JFrame {
     private javax.swing.JPanel PanelBtn;
     private javax.swing.JPanel PanelSearch;
     private javax.swing.JPanel PanelType;
+    private javax.swing.JLabel Pfp;
     private javax.swing.JButton RefreshTimeline;
     private javax.swing.JTextArea TimeLine;
     private javax.swing.JTextArea areaTweet;
@@ -676,6 +712,7 @@ public class Navegacion extends javax.swing.JFrame {
     private javax.swing.JButton btnTwitt;
     private javax.swing.JLabel charsPost;
     private javax.swing.JLabel has;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;

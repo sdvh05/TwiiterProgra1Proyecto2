@@ -126,6 +126,10 @@ public class Usuario {
      this.following[numFollowing]=nombre;
      numFollowing++;
  }
+  
+  public void UpdateFollowers(String user, int pos){
+      this.followers[pos]=user;
+  }
 
   public void RestarFollower(String nombre){
        int posicion = -1; 

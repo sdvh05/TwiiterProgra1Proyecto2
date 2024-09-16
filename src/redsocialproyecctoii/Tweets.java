@@ -35,6 +35,10 @@ public class Tweets {
         return fecha;
     }
     
+    public void setUsuario(String usuario){
+        this.usuario=usuario;
+    }
+    
     public String[] getHashtags() {
     
     String[] palabras = this.texto.split(" ");
